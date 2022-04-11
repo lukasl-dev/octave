@@ -6,6 +6,7 @@ import (
 	"github.com/gompus/snowflake"
 	"github.com/lukasl-dev/octave/command/pause"
 	"github.com/lukasl-dev/octave/command/play"
+	"github.com/lukasl-dev/octave/command/resume"
 	"github.com/lukasl-dev/octave/config"
 	"github.com/lukasl-dev/waterlink"
 )
@@ -72,4 +73,5 @@ func (a *app) credentials() waterlink.Credentials {
 func (a *app) registerCommands() {
 	a.cmds.add(play.Play(play.Deps{Client: a.client, Conn: a.conn}))
 	a.cmds.add(pause.Pause(pause.Deps{Conn: a.conn}))
+	a.cmds.add(resume.Resume(resume.Deps{Conn: a.conn}))
 }
