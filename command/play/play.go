@@ -27,10 +27,11 @@ func Play(deps Deps) command.Command {
 			Description: "Plays a song from a given URL",
 			Options: []*discordgo.ApplicationCommandOption{
 				{
-					Type:        discordgo.ApplicationCommandOptionString,
-					Name:        "url",
-					Description: "The URL of the song to play",
-					Required:    true,
+					Type:         discordgo.ApplicationCommandOptionString,
+					Name:         "url",
+					Description:  "The URL of the song to play",
+					Autocomplete: true,
+					Required:     true,
 				},
 			},
 		},
