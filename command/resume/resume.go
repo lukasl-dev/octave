@@ -29,7 +29,7 @@ func Resume(deps Deps) command.Command {
 			}
 
 			return &discordgo.InteractionResponseData{
-				Content: ":play_pause:  Playback has been resumed.",
+				Content: ":play_pause: Playback has been resumed.",
 			}
 		},
 	}
