@@ -19,7 +19,7 @@ func Resume(deps Deps) command.Command {
 	return command.Command{
 		ApplicationCommand: discordgo.ApplicationCommand{
 			Name:        "resume",
-			Description: "Resumes the current playback.",
+			Description: "Resumes the current playback",
 		},
 		Do: func(s *discordgo.Session, evt *discordgo.InteractionCreate) *discordgo.InteractionResponseData {
 			g := deps.Conn.Guild(snowflake.MustParse(evt.GuildID))
