@@ -7,6 +7,7 @@ import (
 	"github.com/gompus/snowflake"
 	"github.com/lukasl-dev/octave/command"
 	"github.com/lukasl-dev/waterlink"
+	"strconv"
 )
 
 // Deps are the needed dependencies for Volume().
@@ -36,12 +37,18 @@ func Volume(deps Deps) command.Command {
 			volume := command.Option(evt.ApplicationCommandData().Options, "volume")
 
 			g := deps.Conn.Guild(snowflake.MustParse(evt.GuildID))
-			if err := g.UpdateVolume(uint16(volume.IntValue())); err != nil {
+
+			vol, err := strconv.Atoi(fmt.Sprint(volume.Value))
+			if err != nil {
+				return command.ErrorResponse(errors.New("invalid volume"))
+			}
+
+			if err := g.UpdateVolume(uint16(vol)); err != nil {
 				return command.ErrorResponse(errors.New("failed to update volume"))
 			}
 
 			return &discordgo.InteractionResponseData{
-				Content: fmt.Sprintf(":sound: Volume has been updated to %d%%.", volume.IntValue()),
+				Content: fmt.Sprintf(":sound: Volume has been updated to **%d%%**.", vol),
 			}
 		},
 	}
