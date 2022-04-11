@@ -23,10 +23,12 @@ func Volume(deps Deps) command.Command {
 			Description: "Update the player's volume",
 			Options: []*discordgo.ApplicationCommandOption{
 				{
-					Name:        "volume",
-					Description: "The new volume in percent",
-					MaxValue:    100,
-					Type:        discordgo.ApplicationCommandOptionInteger,
+					Name:         "volume",
+					Description:  "The new volume in percent",
+					MaxValue:     100,
+					Type:         discordgo.ApplicationCommandOptionInteger,
+					Autocomplete: true,
+					Required:     true,
 				},
 			},
 		},
@@ -39,7 +41,7 @@ func Volume(deps Deps) command.Command {
 			}
 
 			return &discordgo.InteractionResponseData{
-				Content: fmt.Sprintf(":sound: Volume has been updated to %d%.", volume.IntValue()),
+				Content: fmt.Sprintf(":sound: Volume has been updated to %d%%.", volume.IntValue()),
 			}
 		},
 	}
