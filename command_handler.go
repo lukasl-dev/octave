@@ -36,8 +36,33 @@ func (c *commandHandler) create(s *discordgo.Session, gID string) error {
 // command.
 func (c *commandHandler) handle(s *discordgo.Session, evt *discordgo.InteractionCreate) {
 	cmd := c.commands[evt.ApplicationCommandData().Name]
+	if cmd.Name == "" {
+		return
+	}
+
+	switch {
+	case evt.Type == discordgo.InteractionApplicationCommandAutocomplete:
+		c.handleAutocomplete(s, evt, cmd)
+	case evt.Type == discordgo.InteractionApplicationCommand:
+		c.handleCommand(s, evt, cmd)
+	}
+}
+
+func (c *commandHandler) handleAutocomplete(s *discordgo.Session, evt *discordgo.InteractionCreate, cmd command.Command) {
+	data := new(discordgo.InteractionResponseData)
+	if cmd.Autocomplete != nil {
+		data = cmd.Autocomplete(s, evt)
+	}
+
+	_ = s.InteractionRespond(evt.Interaction, &discordgo.InteractionResponse{
+		Type: discordgo.InteractionApplicationCommandAutocompleteResult,
+		Data: data,
+	})
+}
+
+func (c *commandHandler) handleCommand(s *discordgo.Session, evt *discordgo.InteractionCreate, cmd command.Command) {
 	_ = s.InteractionRespond(evt.Interaction, &discordgo.InteractionResponse{
 		Type: discordgo.InteractionResponseChannelMessageWithSource,
-		Data: cmd.Do(s, evt),
+		Data: cmd.Command(s, evt),
 	})
 }

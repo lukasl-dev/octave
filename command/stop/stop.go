@@ -21,7 +21,7 @@ func Stop(deps Deps) command.Command {
 			Name:        "stop",
 			Description: "Stops the player",
 		},
-		Do: func(s *discordgo.Session, evt *discordgo.InteractionCreate) *discordgo.InteractionResponseData {
+		Command: func(s *discordgo.Session, evt *discordgo.InteractionCreate) *discordgo.InteractionResponseData {
 			g := deps.Conn.Guild(snowflake.MustParse(evt.GuildID))
 
 			if err := g.Stop(); err != nil {

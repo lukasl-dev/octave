@@ -21,7 +21,7 @@ func Pause(deps Deps) command.Command {
 			Name:        "pause",
 			Description: "Pauses the current playback.",
 		},
-		Do: func(s *discordgo.Session, evt *discordgo.InteractionCreate) *discordgo.InteractionResponseData {
+		Command: func(s *discordgo.Session, evt *discordgo.InteractionCreate) *discordgo.InteractionResponseData {
 			g := deps.Conn.Guild(snowflake.MustParse(evt.GuildID))
 
 			if err := g.SetPaused(true); err != nil {

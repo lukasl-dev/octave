@@ -32,7 +32,7 @@ func Seek(deps Deps) command.Command {
 				},
 			},
 		},
-		Do: func(s *discordgo.Session, evt *discordgo.InteractionCreate) *discordgo.InteractionResponseData {
+		Command: func(s *discordgo.Session, evt *discordgo.InteractionCreate) *discordgo.InteractionResponseData {
 			position := command.Option(evt.ApplicationCommandData().Options, "position")
 
 			parsed, err := time.ParseDuration(position.StringValue())

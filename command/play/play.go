@@ -35,7 +35,7 @@ func Play(deps Deps) command.Command {
 				},
 			},
 		},
-		Do: func(s *discordgo.Session, evt *discordgo.InteractionCreate) *discordgo.InteractionResponseData {
+		Command: func(s *discordgo.Session, evt *discordgo.InteractionCreate) *discordgo.InteractionResponseData {
 			url := command.Option(evt.ApplicationCommandData().Options, "url")
 
 			res, err := deps.Client.LoadTracks(query.Of(url.StringValue()))

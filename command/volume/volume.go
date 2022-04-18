@@ -33,7 +33,7 @@ func Volume(deps Deps) command.Command {
 				},
 			},
 		},
-		Do: func(s *discordgo.Session, evt *discordgo.InteractionCreate) *discordgo.InteractionResponseData {
+		Command: func(s *discordgo.Session, evt *discordgo.InteractionCreate) *discordgo.InteractionResponseData {
 			volume := command.Option(evt.ApplicationCommandData().Options, "volume")
 
 			g := deps.Conn.Guild(snowflake.MustParse(evt.GuildID))
