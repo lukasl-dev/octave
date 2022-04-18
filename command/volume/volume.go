@@ -24,12 +24,11 @@ func Volume(deps Deps) command.Command {
 			Description: "Update the player's volume",
 			Options: []*discordgo.ApplicationCommandOption{
 				{
-					Name:         "volume",
-					Description:  "The new volume in percent",
-					MaxValue:     100,
-					Type:         discordgo.ApplicationCommandOptionInteger,
-					Autocomplete: true,
-					Required:     true,
+					Name:        "volume",
+					Description: "The new volume in percent",
+					MaxValue:    100,
+					Type:        discordgo.ApplicationCommandOptionInteger,
+					Required:    true,
 				},
 			},
 		},
