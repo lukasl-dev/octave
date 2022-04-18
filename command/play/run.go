@@ -38,7 +38,20 @@ func run(deps Deps) command.Handler {
 		}
 
 		return &discordgo.InteractionResponseData{
-			Content: fmt.Sprintf(":arrow_forward: Now playing **%s**", tr.Info.Title),
+			Components: []discordgo.MessageComponent{
+				discordgo.ActionsRow{
+					Components: []discordgo.MessageComponent{
+						discordgo.Button{
+							Emoji: discordgo.ComponentEmoji{
+								Name: "▶️",
+							},
+							Label: fmt.Sprintf("Now playing %s", tr.Info.Title),
+							Style: discordgo.LinkButton,
+							URL:   tr.Info.URI,
+						},
+					},
+				},
+			},
 		}
 	}
 }
