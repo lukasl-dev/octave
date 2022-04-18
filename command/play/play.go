@@ -6,8 +6,8 @@ import (
 	"github.com/bwmarrin/discordgo"
 	"github.com/gompus/snowflake"
 	"github.com/lukasl-dev/octave/command"
-	"github.com/lukasl-dev/waterlink"
-	"github.com/lukasl-dev/waterlink/track/query"
+	"github.com/lukasl-dev/waterlink/v2"
+	"github.com/lukasl-dev/waterlink/v2/track/query"
 )
 
 // Deps are the needed dependencies for Play().

@@ -5,7 +5,7 @@ import (
 	"github.com/bwmarrin/discordgo"
 	"github.com/gompus/snowflake"
 	"github.com/lukasl-dev/octave/command"
-	"github.com/lukasl-dev/waterlink"
+	"github.com/lukasl-dev/waterlink/v2"
 )
 
 // Deps are the needed dependencies for Pause().

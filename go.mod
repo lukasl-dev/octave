@@ -3,9 +3,9 @@ module github.com/lukasl-dev/octave
 go 1.18
 
 require (
-	github.com/lukasl-dev/waterlink v0.0.0-20220410235147-81c8fe6c3846
 	github.com/bwmarrin/discordgo v0.24.0
 	github.com/gompus/snowflake v0.0.4
+	github.com/lukasl-dev/waterlink/v2 v2.0.0
 )
 
 require (

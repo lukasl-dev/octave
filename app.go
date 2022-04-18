@@ -10,7 +10,7 @@ import (
 	"github.com/lukasl-dev/octave/command/stop"
 	"github.com/lukasl-dev/octave/command/volume"
 	"github.com/lukasl-dev/octave/config"
-	"github.com/lukasl-dev/waterlink"
+	"github.com/lukasl-dev/waterlink/v2"
 )
 
 // app is the main application struct. It holds all necessary dependencies to
