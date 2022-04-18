@@ -49,9 +49,11 @@ func (c *commandHandler) handle(s *discordgo.Session, evt *discordgo.Interaction
 }
 
 func (c *commandHandler) handleAutocomplete(s *discordgo.Session, evt *discordgo.InteractionCreate, cmd command.Command) {
-	data := new(discordgo.InteractionResponseData)
+	var data *discordgo.InteractionResponseData
 	if cmd.Autocomplete != nil {
 		data = cmd.Autocomplete(s, evt)
+	} else {
+		data = new(discordgo.InteractionResponseData)
 	}
 
 	_ = s.InteractionRespond(evt.Interaction, &discordgo.InteractionResponse{
