@@ -1,4 +1,4 @@
-package queue
+package guild
 
 import (
 	"github.com/lukasl-dev/waterlink/v2/track"
@@ -20,11 +20,14 @@ func NewQueue(tr ...track.Track) *Queue {
 	return &Queue{tracks: tr}
 }
 
-// Range iterates over the tracks in the queue and calls fn() for each track.
-func (q *Queue) Range(fn func(track.Track)) {
+// Range calls fn() sequentially for each track in the queue until fn() returns
+// false.
+func (q *Queue) Range(fn func(track.Track) bool) {
 	q.mu.RLock()
 	for _, t := range q.tracks {
-		fn(t)
+		if !fn(t) {
+			break
+		}
 	}
 	q.mu.RUnlock()
 }
